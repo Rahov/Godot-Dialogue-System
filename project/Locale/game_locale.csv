@@ -1,0 +1,8 @@
+id,en
+start_test,This is where the conversation starts
+choice_test,This is the choice
+n_ivan,Ivan
+n_ivan_hb1m001,The barman greets you
+c_ivan_hb1m001,Hello there
+n_ivan_hb1m002,The barman asks if you would like a drink
+c_ivan_hb1m002,What drink would you like?
