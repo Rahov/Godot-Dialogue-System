@@ -11,7 +11,7 @@ onready var _buttons = [C1, C2, C3]
 
 onready var dialogueMaster = $"../../DialogueTest"
 
-var dialogue = []
+var dialogue = {messeges = [],branches = []}
 var step : int
 var branch = 0
 
@@ -33,12 +33,17 @@ func _dialogue_system(_branch : int):
 
 func _on_Button_pressed():
 	branch = 0
-	dialogue.append([])
+	dialogue.messeges.append([])
+	dialogue.messeges.append([])
+	dialogue.messeges.append([])
+	
 	dialogueMaster.set_script(load("res://Dialogues/Node.vs"))
 	dialogueMaster._ready()
 	
-	for i in dialogue.size():
-		print(i , "\n", dialogue[i])
+	
+	
+	for i in dialogue.messeges.size():
+		print(i , "\n", dialogue.messeges[i])
 	print("all-size: ", dialogue.size())
 #
 	
@@ -63,7 +68,7 @@ func _on_C2_pressed():
 	_dialogue_system(2)
 
 func conversation(_name, _icon, _narration, _dialogue):
-	dialogue[branch].append({NAME = tr(_name), ICON = _icon, NARR = tr(_narration), CONVO = tr(_dialogue)})
+	dialogue.messeges[branch].append({NAME = tr(_name), ICON = _icon, NARR = tr(_narration), CONVO = tr(_dialogue)})
 
 func show_choice(_name, _icon, _narration, _dialogue, _choice1, _choice2, _choice3):
 	var _choices = []
@@ -78,15 +83,8 @@ func show_choice(_name, _icon, _narration, _dialogue, _choice1, _choice2, _choic
 
 #	branch_stack.append(branch)
 #	dialogue[0].counter = _choices.size()
-	dialogue[branch].append({NAME = tr(_name), ICON = _icon, NARR = tr(_narration), CONVO = tr(_dialogue), CHOICE = _choices})
+	dialogue.messeges[branch].append({NAME = tr(_name), ICON = _icon, NARR = tr(_narration), CONVO = tr(_dialogue), CHOICE = _choices})
 	
 
-var going0 : int 
 func choice(i):
-#	print(branch)
-	print(i)
-	branch = branch + i
-	dialogue.append([])
-#	if i == 0:
-#		going0 = going0 + 1
-#		print(going0)
+	branch = i
