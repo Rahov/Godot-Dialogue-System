@@ -36,6 +36,7 @@ func _on_Button_pressed():
 	dialogue.messeges.append([])
 	dialogue.messeges.append([])
 	dialogue.messeges.append([])
+	print(dialogue)
 	
 	dialogueMaster.set_script(load("res://Dialogues/Node.vs"))
 	dialogueMaster._ready()
@@ -45,6 +46,7 @@ func _on_Button_pressed():
 	for i in dialogue.messeges.size():
 		print(i , "\n", dialogue.messeges[i])
 	print("all-size: ", dialogue.size())
+	print("\n\n", dialogue)
 #
 	
 #	print("\n", dialogue[0][1])
@@ -77,12 +79,9 @@ func show_choice(_name, _icon, _narration, _dialogue, _choice1, _choice2, _choic
 	if _choice3 != "Null": _choices.append(tr(_choice3))
 	#if _choice4 != "Null": _choices.append(tr(_choice4))
 	
-#	for i in range(_choices.size()):
-#		dialogue[0].branches.append(dialogue.size())
-#		dialogue.append({root = branch, messages = []})
+	dialogue.branches.append(_choices.size())
 
 #	branch_stack.append(branch)
-#	dialogue[0].counter = _choices.size()
 	dialogue.messeges[branch].append({NAME = tr(_name), ICON = _icon, NARR = tr(_narration), CONVO = tr(_dialogue), CHOICE = _choices})
 	
 
