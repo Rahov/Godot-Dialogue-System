@@ -11,79 +11,64 @@ onready var _buttons = [C1, C2, C3]
 
 onready var dialogueMaster = $"../../DialogueTest"
 
-var dialogue = {messeges = [],branches = []}
-var step : int
+var dialogue = {}
 var branch = 0
 
+var step : String
+var step_number : int = 0
 
-func _dialogue_system(_branch : int):
-	Name.text = dialogue[_branch][step].NAME
-	Narr.text = dialogue[_branch][step].NARR
-	Convo.text = dialogue[_branch][step].CONVO
-	
-	if dialogue[_branch][step].has("CHOICE"):
-		for i in dialogue[_branch][step].CHOICE.size():
-			_buttons[i].text = dialogue[_branch][step].CHOICE[i]
+func _on_Panel_gui_input(event):
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
+		step = step + (str(step_number + 1))
+		_dialogue_system(step)
+
+func _on_C1_pressed():
+	_dialogue_system(C1.text)
+	step = C1.text
+
+func _on_C2_pressed():
+	_dialogue_system(C2.text)
+	step = C2.text
+
+
+func _dialogue_system(_node_name : String):
+	Name.text = dialogue[_node_name].NAME
+	Narr.text = dialogue[_node_name].NARR
+	Convo.text = dialogue[_node_name].CONVO
+
+	if dialogue[_node_name].has("CHOICE"):
+		for i in dialogue[_node_name].CHOICE.size():
+			_buttons[i].text = dialogue[_node_name].CHOICE[i]
 			_buttons[i].show()
 	else:
 		C1.hide()
 		C2.hide()
 		C3.hide()
-	
+	return _node_name
 
 func _on_Button_pressed():
 	branch = 0
-	dialogue.messeges.append([])
-	dialogue.messeges.append([])
-	dialogue.messeges.append([])
-	print(dialogue)
 	
-	dialogueMaster.set_script(load("res://Dialogues/Node.vs"))
+	dialogueMaster.set_script(load("res://Dialogues/1Node.vs"))
 	dialogueMaster._ready()
 	
-	
-	
-	for i in dialogue.messeges.size():
-		print(i , "\n", dialogue.messeges[i])
-	print("all-size: ", dialogue.size())
-	print("\n\n", dialogue)
+	step = _dialogue_system("init")
+#	print("\n",dialogue["init_1"])
+#	for i in dialogue.size():
+#		print(i , "\n", dialogue[i])
 #
-	
-#	print("\n", dialogue[0][1])
-#	print("\n", dialogue[1][0])
-#	print("\n", dialogue[2][0])
-#	step = 0
-#	_dialogue_system(0)
 
-func _on_Panel_gui_input(event):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
-		step += 1
-		_dialogue_system(0)
-	pass # Replace with function body.
+func conversation(_id, _name, _icon, _narration, _dialogue):
+	dialogue[_id] = {NAME = _name, ICON = _icon, NARR = _narration, CONVO = _dialogue}
+	pass
 
-func _on_C1_pressed():
-	step = 0
-	_dialogue_system(1)
-
-func _on_C2_pressed():
-	step = 0
-	_dialogue_system(2)
-
-func conversation(_name, _icon, _narration, _dialogue):
-	dialogue.messeges[branch].append({NAME = tr(_name), ICON = _icon, NARR = tr(_narration), CONVO = tr(_dialogue)})
-
-func show_choice(_name, _icon, _narration, _dialogue, _choice1, _choice2, _choice3):
+func show_choice(_id, _name, _icon, _narration, _dialogue, _choice1, _choice2, _choice3):
 	var _choices = []
 	if _choice1 != "Null": _choices.append(tr(_choice1))
 	if _choice2 != "Null": _choices.append(tr(_choice2))
 	if _choice3 != "Null": _choices.append(tr(_choice3))
 	#if _choice4 != "Null": _choices.append(tr(_choice4))
 	
-	dialogue.branches.append(_choices.size())
-
 #	branch_stack.append(branch)
-	dialogue.messeges[branch].append({NAME = tr(_name), ICON = _icon, NARR = tr(_narration), CONVO = tr(_dialogue), CHOICE = _choices})
-	
-
-func choice(i):
-	branch = i
+	dialogue[_id] = {NAME = _name, ICON = _icon, NARR = _narration, CONVO = _dialogue, CHOICE = _choices}
+	pass
