@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scripts/DialogueTest.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/DialogueCompiler.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/DialogueInterpreter.gd" type="Script" id=2]
 
 [node name="DialogueTest" type="Node"]
 
@@ -12,6 +13,10 @@ margin_left = 544.0
 margin_top = 153.0
 margin_right = 852.0
 margin_bottom = 415.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Convo" type="Label" parent="Panel"]
 anchor_top = 1.0
@@ -68,7 +73,7 @@ margin_top = 262.0
 margin_right = 461.0
 margin_bottom = 282.0
 text = "Begin Test"
-[connection signal="gui_input" from="Panel" to="Node" method="_on_Panel_gui_input"]
-[connection signal="pressed" from="Panel/C1" to="Node" method="_on_C1_pressed"]
-[connection signal="pressed" from="Panel/C2" to="Node" method="_on_C2_pressed"]
+[connection signal="gui_input" from="Panel" to="Panel" method="_on_Panel_gui_input"]
+[connection signal="pressed" from="Panel/C1" to="Panel" method="_on_C1_pressed"]
+[connection signal="pressed" from="Panel/C2" to="Panel" method="_on_C2_pressed"]
 [connection signal="pressed" from="Button" to="Node" method="_on_Button_pressed"]
