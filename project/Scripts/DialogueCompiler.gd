@@ -1,13 +1,23 @@
 extends Node
 
 
-var dialogue : Dictionary = {}
 func _on_Button_pressed():
-	$"../../DialogueTest".set_script(load("res://Dialogues/1Node.vs"))
 	$"../../DialogueTest"._ready()
-	
 	$"../Panel"._get_dialogue(dialogue)
 
+func _on_Button2_pressed():
+	var test_vs = $"../../DialogueTest"
+	test_vs.set_script(load("res://Dialogues/1Node.vs"))
+	test_vs.name_changer = "changed"
+	
+
+func _on_Button3_pressed():
+	$"../../DialogueTest".set_script(load("res://Dialogues/2Node.vs"))
+	
+
+
+
+var dialogue : Dictionary = {}
 func conversation(_id, _name, _icon, _narration, _dialogue):
 	dialogue[_id] = {NAME = _name, ICON = _icon, NARR = _narration, CONVO = _dialogue}
 
