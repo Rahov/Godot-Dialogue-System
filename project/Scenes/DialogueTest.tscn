@@ -100,6 +100,7 @@ __meta__ = {
 [connection signal="gui_input" from="Panel" to="Panel" method="_on_Panel_gui_input"]
 [connection signal="pressed" from="Panel/C1" to="Panel" method="_on_C1_pressed"]
 [connection signal="pressed" from="Panel/C2" to="Panel" method="_on_C2_pressed"]
+[connection signal="pressed" from="Panel/C3" to="Panel" method="_on_C3_pressed"]
 [connection signal="pressed" from="Button" to="Node" method="_on_Button_pressed"]
 [connection signal="pressed" from="Button2" to="Node" method="_on_Button2_pressed"]
 [connection signal="pressed" from="Button3" to="Node" method="_on_Button3_pressed"]
