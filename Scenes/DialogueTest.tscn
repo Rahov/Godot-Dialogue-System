@@ -67,6 +67,9 @@ anchor_bottom = 0.5
 margin_left = -12.0
 margin_top = 30.0
 margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="C4" type="Button" parent="Panel"]
 anchor_left = 1.0
@@ -98,7 +101,6 @@ __meta__ = {
 }
 
 [node name="Button3" type="Button" parent="."]
-visible = false
 margin_left = 400.0
 margin_top = 300.0
 margin_right = 479.0
