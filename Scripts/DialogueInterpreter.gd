@@ -34,8 +34,6 @@ func _dialogue_system(_node_ID : String):
 	return _node_ID
 
 
-
-
 var step_number : int
 func _on_Panel_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
@@ -58,20 +56,39 @@ func button_pressed(_text : String):
 	step = _text
 	step_number = 0
 
+
+
+
 var conversations : Dictionary
-var choices : Array
+func _ready():
+	var dir = Directory.new()
+	if dir.open("res://Dialogues") == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if !dir.current_is_dir():
+				print("Found file: " + file_name)
+				conversations[file_name] = []
+			file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access the path.")
+
 func dialogue_database(_script : String, _choice_entry : String):
-	if choices.has(_choice_entry):
+	if conversations[_script].has(_choice_entry):
 		return 0
-	choices.append(_choice_entry)
-	conversations[_script] = choices
-	print(conversations)
+	var _choices : Array
+	_choices = conversations[_script]
+	_choices.append(_choice_entry)
+	conversations[_script] = _choices
+	print(JSON.print(conversations))
+
+# this is how printing is done
+# print(JSON.print(mainDict,'\t'))
+
+
 
 func ERROR_index(_struct : Dictionary, _sample : String):
-	var _check_list = []
-	for i in _struct.keys():
-		_check_list.append(i)
-	if !_check_list.has(_sample):
+	if !_struct.keys().has(_sample):
 		print("Index value: *", _sample, "* is not resolvable")
 		return true
 	return false
