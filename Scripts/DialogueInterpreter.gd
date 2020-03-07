@@ -51,44 +51,26 @@ func _on_C4_pressed():
 	button_pressed(C4.text)
 
 func button_pressed(_text : String):
-	dialogue_database($"../../DialogueTest".get_script().get_path().get_file(), _text)
 	_dialogue_system(_text)
 	step = _text
 	step_number = 0
-
-
-
-
-var conversations : Dictionary
-func _ready():
-	var dir = Directory.new()
-	if dir.open("res://Dialogues") == OK:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if !dir.current_is_dir():
-				print("Found file: " + file_name)
-				conversations[file_name] = []
-			file_name = dir.get_next()
-	else:
-		print("An error occurred when trying to access the path.")
-
-func dialogue_database(_script : String, _choice_entry : String):
-	if conversations[_script].has(_choice_entry):
-		return 0
-	var _choices : Array
-	_choices = conversations[_script]
-	_choices.append(_choice_entry)
-	conversations[_script] = _choices
-	print(JSON.print(conversations))
-
-# this is how printing is done
-# print(JSON.print(mainDict,'\t'))
-
-
 
 func ERROR_index(_struct : Dictionary, _sample : String):
 	if !_struct.keys().has(_sample):
 		print("Index value: *", _sample, "* is not resolvable")
 		return true
 	return false
+
+
+
+#func dialogue_database(_script : String, _choice_entry : String):
+#	if conversations[_script].has(_choice_entry):
+#		return 0
+#	var _choices : Array
+#	_choices = conversations[_script]
+#	_choices.append(_choice_entry)
+#	conversations[_script] = _choices
+#	print(JSON.print(conversations))
+
+# this is how printing is done
+# print(JSON.print(mainDict,'\t'))
