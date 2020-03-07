@@ -33,11 +33,11 @@ func return_to_conc(_id, _destination):
 	dialogue[_id] = {DEST = _destination}
 
 func _on_Button_pressed():
-	$"../../DialogueTest"._ready()
+	get_parent()._ready()
 	$"../Panel"._get_dialogue(dialogue)
 
 func _on_Button2_pressed():
-	$"../../DialogueTest".set_script(load("res://Dialogues/1Node.vs"))
+	get_parent().set_script(load("res://Dialogues/1Node.vs"))
 
 func _on_Button3_pressed():
-	$"../../DialogueTest".set_script(load("res://Dialogues/3Node.vs"))
+	get_parent().set_script(load("res://Dialogues/3Node.vs"))
