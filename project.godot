@@ -15,13 +15,13 @@ _global_script_class_icons={
 
 [application]
 
-config/name="TEST"
-run/main_scene="res://Scenes/DialogueTest.tscn"
+config/name="Godot Dialogue System"
+run/main_scene="res://Scenes/Dialogue.tscn"
 config/icon="res://icon.png"
 
 [locale]
 
-translations=PoolStringArray( "res://Locale/game_locale.en.translation" )
+translations=PoolStringArray(  )
 locale_filter=[ 0, [ "en" ] ]
 
 [rendering]
