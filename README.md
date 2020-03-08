@@ -6,6 +6,12 @@ This project is a minimalist dialogue system developed in Godot and crafted to h
 * open the project with Godot
 * play around with tutorial scene
 
+### To-Do:
+* improve README.md
+* utilise the icons component
+* merge with main project
+
+
 ### Extras
 Made with Godot v3.2.stable.custom_build
 
